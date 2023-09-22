@@ -1,13 +1,18 @@
 from abc import abstractmethod
 from typing import List, Optional
 
-from disk import AbstractDisk
+from interfaces.disk import AbstractDisk
 
 
 class AbstractRaid(AbstractDisk):
     @abstractmethod
-    def __init__(self, size: int = 0, name: Optional[str] = None,
-                 disks: List[AbstractDisk] = (), is_rebuild: bool = False):
+    def __init__(
+            self,
+            name: Optional[str] = None,
+            size: int = 0,
+            disks: List[AbstractDisk] = (),
+            is_rebuild: bool = False
+    ):
         ...
 
     @abstractmethod
@@ -22,23 +27,23 @@ class AbstractRaid(AbstractDisk):
     def check_raid(self) -> None:
         ...
     
-    @abstractmethod
     @property
+    @abstractmethod
     def raid_type(self) -> str:
         ...
 
-    @abstractmethod
     @property
+    @abstractmethod
     def is_valid_disk_count(self) -> bool:
         ...
 
-    @abstractmethod
     @property
+    @abstractmethod
     def is_healthy(self) -> bool:
         ...
 
-    @abstractmethod
     @property
+    @abstractmethod
     def list_disk(self) -> List[AbstractDisk]:
         ...
 

@@ -4,7 +4,7 @@ from typing import Optional
 
 class AbstractDisk(ABC):
     @abstractmethod
-    def __init__(self, size: int = 0, name: Optional[str] = None):
+    def __init__(self, name: Optional[str] = None, size: int = 0):
         ...
 
     @abstractmethod
@@ -19,17 +19,17 @@ class AbstractDisk(ABC):
     def resize(self, increase_size: int) -> None:
         ...
 
-    @abstractmethod
     @property
+    @abstractmethod
     def size(self) -> int:
         ...
 
-    @abstractmethod
     @property
+    @abstractmethod
     def is_resizable(self) -> bool:
         ...
 
-    @abstractmethod
     @property
+    @abstractmethod
     def name(self) -> str:
         ...

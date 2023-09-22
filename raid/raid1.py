@@ -9,8 +9,13 @@ from interfaces.raid import AbstractRaid
 class Raid1(AbstractRaid):
     _magic_string = b"RAID1"
 
-    def __init__(self, size: int = 0, name: Optional[str] = None,
-                 disks: List[AbstractDisk] = (), is_rebuild: bool = False):
+    def __init__(
+            self,
+            name: Optional[str] = None,
+            size: int = 0,
+            disks: List[AbstractDisk] = (),
+            is_rebuild: bool = False
+    ):
         self._size = min([disk.size for disk in disks]) - len(self._magic_string)
         self._name = name
         if len(disks) <= 1:
