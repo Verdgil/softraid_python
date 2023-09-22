@@ -32,7 +32,13 @@ class Raid0(AbstractRaid):
                 disk.write(bytearray(self._magic_string), 0)
 
     def append_disks(self, disks: List[AbstractDisk]) -> None:
-        raise NotImplemented()
+        data = self.read(0, self._size)
+        new_raid = Raid0(
+            disks=self._disks+disks
+        )
+        self._disks = new_raid._disks.copy()
+        self._disk_count = new_raid._disk_count
+        self.write(data, 0)
 
     def remove_disk(self, disk: AbstractDisk) -> None:
         raise NotImplemented()
